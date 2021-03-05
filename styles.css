@@ -3,6 +3,11 @@ body,
 main {
   height: 100%;
   width: 100%;
+  font-family: arial;
+  font-size: 30px;
+}
+* {
+  border: 2px solid red;
 }
 
 main {
@@ -18,6 +23,13 @@ section {
 }
 
 /* Game Play */
+.layout {
+  display: flex;
+  flex-wrap: wrap;
+  height: 268px;
+  width: 270px;
+}
+
 .game-sec {
   width: 500px;
   background-color: white;
@@ -25,6 +37,12 @@ section {
 
 .box {
   border: 5px solid black;
-  height: 15px;
-  width: 10px;
+  height: 80px;
+  width: 80px;
+}
+
+/* Player Sections */
+
+.count-styling {
+  display: flex;
 }
