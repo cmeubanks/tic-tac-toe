@@ -6,14 +6,14 @@ main {
   font-family: arial;
   font-size: 30px;
 }
-* {
+/* * {
   border: 2px solid red;
-}
+} */
 
 main {
   display: flex;
   justify-content: space-around;
-  background-color: blue;
+  background-color: lime;
 }
 
 section {
@@ -45,4 +45,14 @@ section {
 
 .count-styling {
   display: flex;
+}
+
+/* Images */
+
+.heart {
+
+}
+
+.star {
+
 }
