@@ -1,8 +1,9 @@
 class Game {
-  constructor(player1, player2) {
+  constructor() {
+  this.id = Date.now();
   this.winningCombos = []; //figure out which boxes count as wins and add here
-  this.player1 = player1;
-  this.player2 = player2;
+  // this.player1 = player1;
+  // this.player2 = player2;
   this.playerTurn = playerInstance.token;
   this.currentPlaysPlayer1 = [];
   this.currentPlaysPlayer2 = [];
