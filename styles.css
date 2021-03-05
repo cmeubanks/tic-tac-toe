@@ -1,0 +1,30 @@
+html,
+body,
+main {
+  height: 100%;
+  width: 100%;
+}
+
+main {
+  display: flex;
+  justify-content: space-around;
+  background-color: blue;
+}
+
+section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Game Play */
+.game-sec {
+  width: 500px;
+  background-color: white;
+}
+
+.box {
+  border: 5px solid black;
+  height: 15px;
+  width: 10px;
+}
