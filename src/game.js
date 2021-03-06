@@ -4,7 +4,7 @@ class Game {
   this.playCount = 0;
   this.player1 = player1;
   this.player2 = player2;
-  this.currentPlayer = player1.token;
+  // this.currentPlayer = player1.token;
   this.playsByPlayer1 = [];
   this.playsByPlayer2 = [];
   this.winningCombos = [
@@ -20,14 +20,27 @@ class Game {
   }
 
   updateGameData() {
-    if(this.player1.id)
-    this.playsByPlayer1.push(this.player1.id);
+    if(this.player1.turn){
+    this.playsByPlayer1.push(this.player1.selectedBox);
+    }
 
+    if(this.player2.turn){
+    this.playsByPlayer2.push(this.player2.selectedBox);
+    }
   }
 
   switchTurn() {
-    //modifies this.playerTurn
-
+    if(this.player1.turn){
+    currentGame.playCount++
+    this.player2.turn = true;
+    this.player1.turn = false;
+    //switch turn text
+  } else {
+    currentGame.playCount++
+   this.player2.turn = false;
+   this.player1.turn = true;
+   //switch turn text
+  }
   }
 
   checkForWin() {
