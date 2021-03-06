@@ -39,6 +39,7 @@ function trackGamePlay(event) {
     var player2 = createPlayer2();
     currentGame = new Game(player1, player2);
     currentGame.gameStart = true;
+    currentGame.playCount++
     player1.turn = boardValue;
     console.log("I shouldn't come up twice", currentGame);
   }
