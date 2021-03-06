@@ -41,12 +41,9 @@ function trackGamePlay(event) {
     player1 = createPlayer1();
     player2 = createPlayer2();
     currentGame = new Game(player1, player2);
-    // currentGame.gameStart = true;
     player1.selectedBox = boardValue;
     player1.turn = true;
     currentGame.updateGameData();
-    // currentGame.switchTurn();
-    // currentGame.playeCount--
     console.log("first move", currentGame)
 
     }
@@ -62,12 +59,10 @@ function trackGamePlay(event) {
       if(!currentGame.player1.turn){
       currentGame.player2.selectedBox = boardValue;
       currentGame.updateGameData();
-      // currentGame.switchTurn();
       console.log("next move", currentGame)
     } else {
       currentGame.player1.selectedBox = boardValue;
       currentGame.updateGameData();
-      // currentGame.switchTurn();
       console.log("next move", currentGame)
     }
     }
