@@ -1,6 +1,6 @@
 class Game {
   constructor(player1, player2) {
-  this.gameStart = false;
+  // this.gameStart = false;
   this.playCount = 0;
   this.player1 = player1;
   this.player2 = player2;
@@ -31,12 +31,12 @@ class Game {
 
   switchTurn() {
     if(this.player1.turn){
-    currentGame.playCount++
+    // currentGame.playCount++
     this.player2.turn = true;
     this.player1.turn = false;
     //switch turn text
   } else {
-    currentGame.playCount++
+    // currentGame.playCount++
    this.player2.turn = false;
    this.player1.turn = true;
    //switch turn text

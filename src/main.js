@@ -41,12 +41,12 @@ function trackGamePlay(event) {
     player1 = createPlayer1();
     player2 = createPlayer2();
     currentGame = new Game(player1, player2);
-    currentGame.gameStart = true;
+    // currentGame.gameStart = true;
     player1.selectedBox = boardValue;
     player1.turn = true;
     currentGame.updateGameData();
     currentGame.switchTurn();
-    currentGame.playCount--
+    // currentGame.playeCount--
     console.log("first move", currentGame)
 
     }
@@ -60,7 +60,7 @@ function trackGamePlay(event) {
       //change who's turn it is text
       currentGame.player2.selectedBox = boardValue;
       currentGame.updateGameData();
-      console.log("second move", currentGame)
+      console.log("next move", currentGame)
     }
   }
   //star will later be used in an .innerHTML conditional
