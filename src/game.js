@@ -1,5 +1,6 @@
 class Game {
   constructor(player1, player2) {
+  this.gameStart = false;
   this.player1 = player1;
   this.player2 = player2;
   this.currentPlayer = player1.token;

@@ -1,4 +1,5 @@
 var gameGrid = document.querySelector('#gameGrid');
+var currentGame
 
 
 
@@ -12,8 +13,8 @@ gameGrid.addEventListener('click', trackGamePlay);
 
 //game defaults to player1 turn to start
 function startGame () {
-  createPlayer1();
-  createPlayer2();
+  // createPlayer1();
+  // createPlayer2();
   trackGamePlay();
 }
 
@@ -33,11 +34,13 @@ function createPlayer2() {
 
 function trackGamePlay(event) {
   var boardValue = event.target.getAttribute('id');
-  if(createPlayer1().turnCount === 0){
+  if(!currentGame){
     var player1 = createPlayer1();
     var player2 = createPlayer2();
+    currentGame = new Game(player1, player2);
+    currentGame.gameStart = true;
     player1.turn = boardValue;
-    console.log(player1);
+    console.log("I shouldn't come up twice", currentGame);
   }
   }
   //star will later be used in an .innerHTML conditional
