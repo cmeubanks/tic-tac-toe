@@ -46,17 +46,17 @@ function trackGamePlay(event) {
     player1.turn = true;
     currentGame.updateGameData();
     currentGame.switchTurn();
+    currentGame.playCount--
     console.log("first move", currentGame)
 
     }
-    // currentGame.switchTurn();
     secondPlay();
   }
 
   function secondPlay() {
     var boardValue = event.target.getAttribute('id');
     currentGame.playCount++
-    if(currentGame.playCount > 2){
+    if(currentGame.playCount > 1){
       //change who's turn it is text
       currentGame.player2.selectedBox = boardValue;
       currentGame.updateGameData();
