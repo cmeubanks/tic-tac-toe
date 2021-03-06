@@ -1,7 +1,11 @@
 class Game {
   constructor(player1, player2) {
-  this.id = Date.now();
-  this.winningCombos = {
+  this.player1 = player1;
+  this.player2 = player2;
+  this.currentPlayer = player1.token;
+  this.playsByPlayer1 = [];
+  this.playsByPlayer2 = [];
+  this.winningCombos = [
     [1,2,3],
     [4,5,6],
     [7,8,9],
@@ -9,15 +13,8 @@ class Game {
     [2,5,8],
     [3,6,9],
     [1,5,9],
-    [3,5,7]
-  }; 
-  this.player1 = player1;
-  this.player2 = player2;
-  // this.playerTurn = player1.token || player2.token;
-  this.currentPlayer = player1.token;
-  this.playsByPlayer1 = [];
-  this.playsByPlayer2 = [];
-
+    [3,5,7],
+  ];
   }
 
   updateGameData() {
