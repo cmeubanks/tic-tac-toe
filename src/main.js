@@ -13,9 +13,10 @@ gameGrid.addEventListener('click', trackGamePlay);
 
 //game defaults to player1 turn to start
 function startGame () {
-  // createPlayer1();
-  // createPlayer2();
-  trackGamePlay();
+  trackGamePlay(event);
+  // if(currentGame.gameStart){
+  //   secondPlay()
+  // }
 }
 
 function createPlayer1() {
@@ -24,7 +25,7 @@ function createPlayer1() {
 }
 
 function createPlayer2() {
-  var player2 = new Player(Date.now(),'heart', null)
+  var player2 = new Player(Date.now()-1,'heart', null)
   return player2
 }
 
@@ -34,14 +35,36 @@ function createPlayer2() {
 
 function trackGamePlay(event) {
   var boardValue = event.target.getAttribute('id');
+  var player1
+  var player2
   if(!currentGame){
-    var player1 = createPlayer1();
-    var player2 = createPlayer2();
+    player1 = createPlayer1();
+    player2 = createPlayer2();
     currentGame = new Game(player1, player2);
-    currentGame.gameStart = true;
-    currentGame.playCount++
-    player1.turn = boardValue;
-    console.log("I shouldn't come up twice", currentGame);
+    player1.selectedBox = boardValue;
+    player1.turn = true;
+    currentGame.updateGameData();
+    console.log("first move", currentGame)
+
+    }
+    secondPlay();
   }
+
+  function secondPlay() {
+    var boardValue = event.target.getAttribute('id');
+    currentGame.playCount++
+    if(currentGame.playCount > 1){
+      currentGame.switchTurn();
+      //change who's turn it is text
+      if(!currentGame.player1.turn){
+      currentGame.player2.selectedBox = boardValue;
+      currentGame.updateGameData();
+      console.log("next move", currentGame)
+    } else {
+      currentGame.player1.selectedBox = boardValue;
+      currentGame.updateGameData();
+      console.log("next move", currentGame)
+    }
+    }
   }
   //star will later be used in an .innerHTML conditional
