@@ -45,7 +45,7 @@ function trackGamePlay(event) {
     player1.selectedBox = boardValue;
     player1.turn = true;
     currentGame.updateGameData();
-    currentGame.switchTurn();
+    // currentGame.switchTurn();
     // currentGame.playeCount--
     console.log("first move", currentGame)
 
@@ -57,10 +57,19 @@ function trackGamePlay(event) {
     var boardValue = event.target.getAttribute('id');
     currentGame.playCount++
     if(currentGame.playCount > 1){
+      currentGame.switchTurn();
       //change who's turn it is text
+      if(!currentGame.player1.turn){
       currentGame.player2.selectedBox = boardValue;
       currentGame.updateGameData();
+      // currentGame.switchTurn();
       console.log("next move", currentGame)
+    } else {
+      currentGame.player1.selectedBox = boardValue;
+      currentGame.updateGameData();
+      // currentGame.switchTurn();
+      console.log("next move", currentGame)
+    }
     }
   }
   //star will later be used in an .innerHTML conditional
