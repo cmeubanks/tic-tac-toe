@@ -23,7 +23,7 @@ section {
 }
 
 /* Game Play */
-.layout {
+.game-grid {
   display: flex;
   flex-wrap: wrap;
   height: 268px;
