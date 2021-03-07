@@ -13,14 +13,11 @@ gameGrid.addEventListener('click', startGame);
 
 //game defaults to player1 turn to start
 function startGame () {
-
   var boardValue = event.target.getAttribute('id');
-  if(currentGame === undefined){
+  if(!currentGame){
     trackGamePlay(event);
-  } else if(currentGame.playsByPlayer1.includes(boardValue) === false && currentGame.playsByPlayer2.includes(boardValue) === false){
-    console.log(currentGame.playsByPlayer1.includes(boardValue))
-    console.log(currentGame.playsByPlayer2.includes(boardValue))
-  trackGamePlay(event);
+  } else if(!currentGame.playsByPlayer1.includes(boardValue) && !currentGame.playsByPlayer2.includes(boardValue)){
+    trackGamePlay(event);
   }
 }
 
