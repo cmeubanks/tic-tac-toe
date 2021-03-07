@@ -17,7 +17,7 @@ function startGame () {
   var boardValue = event.target.getAttribute('id');
   if(currentGame === undefined){
     trackGamePlay(event);
-  } else if(currentGame.playsByPlayer1.includes(boardValue) === false || currentGame.playsByPlayer2.includes(boardValue) === false){
+  } else if(currentGame.playsByPlayer1.includes(boardValue) === false && currentGame.playsByPlayer2.includes(boardValue) === false){
     console.log(currentGame.playsByPlayer1.includes(boardValue))
     console.log(currentGame.playsByPlayer2.includes(boardValue))
   trackGamePlay(event);
