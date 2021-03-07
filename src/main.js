@@ -65,3 +65,7 @@ function trackGamePlay(event) {
     }
     currentGame.checkForWin();
   }
+
+  function addToken() {
+    document.querySelector(".box").innerHTML = "❤️"
+  }

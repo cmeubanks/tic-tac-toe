@@ -37,6 +37,7 @@ section {
 
 .box {
   border: 5px solid black;
+  background-image: 20px;
   height: 80px;
   width: 80px;
 }
@@ -49,9 +50,12 @@ section {
 
 /* Images */
 
-.heart {
+/* .box::before {
+ background-image: 😄;
+ background-size: 15px;
 
-}
+
+} */
 
 .star {
 
