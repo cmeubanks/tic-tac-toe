@@ -31,15 +31,11 @@ class Game {
 
   switchTurn() {
     if(this.player1.turn){
-    // currentGame.playCount++
     this.player2.turn = true;
     this.player1.turn = false;
-    //switch turn text
     } else {
-    // currentGame.playCount++
    this.player2.turn = false;
    this.player1.turn = true;
-   //switch turn text
     }
   }
 
@@ -47,9 +43,13 @@ class Game {
     for(var i = 0; i < this.winningCombos.length; i++) {
       if(this.winningCombos[i].every(index => this.playsByPlayer1.includes(index))){
         this.player1.wins++
+        //add "winning message"
+        //timeou before reset game is run?
       }
       if(this.winningCombos[i].every(index => this.playsByPlayer2.includes(index))){
         this.player2.wins++
+        //add "winning message"
+        //timeout before reset game is run?
       }
     }
   }

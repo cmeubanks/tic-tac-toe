@@ -21,21 +21,6 @@ function startGame () {
   }
 }
 
-// function testPlayer1Array(index) {
-//   return currentGame.playsByPlayer1.includes(index);
-// }
-//
-// function testPlayer2Array(index) {
-//   return
-// }
-//
-// function checkForBoxSelectionMatch(array) {
-//   for(var i = 0;i < array.length; i++){
-//     if(array[i].some(testPlayer1Array))
-//     console.log('yes')
-//   }
-// }
-
 function createPlayer1() {
   var player1 = new Player(Date.now(),'star', null)
   return player1
@@ -45,10 +30,6 @@ function createPlayer2() {
   var player2 = new Player(Date.now()-1,'heart', null)
   return player2
 }
-
-// function startNewGame() {
-//
-// }
 
 function trackGamePlay(event) {
   var boardValue = event.target.getAttribute('id');
@@ -84,8 +65,3 @@ function trackGamePlay(event) {
     }
     currentGame.checkForWin();
   }
-
-  // test(index) {
-  //   return this.playsByPlayer1.includes(index)
-  // }
-  //star will later be used in an .innerHTML conditional
