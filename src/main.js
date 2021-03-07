@@ -1,4 +1,5 @@
 var gameGrid = document.querySelector('#gameGrid');
+var box = document.querySelectorAll('.box');
 var currentGame
 
 
@@ -7,8 +8,8 @@ var currentGame
 
 
 ////////// Event Listeners /////////
-gameGrid.addEventListener('click', startGame);
-
+// gameGrid.addEventListener('click', startGame);
+gameGrid.addEventListener('click', addToken);
 
 
 //game defaults to player1 turn to start
@@ -67,5 +68,11 @@ function trackGamePlay(event) {
   }
 
   function addToken() {
-    document.querySelector(".box").innerHTML = "❤️"
+    var boardValue = event.target.getAttribute('id');
+    for(var i = 0; i < box.length; i++){
+      if(boardValue === box[i].id){
+      box[i].innerHTML = "❤️"
+    }
+  }
+    // document.querySelector(".box").innerHTML = "❤️"
   }
