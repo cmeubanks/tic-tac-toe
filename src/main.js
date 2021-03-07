@@ -7,17 +7,37 @@ var currentGame
 
 
 ////////// Event Listeners /////////
-gameGrid.addEventListener('click', trackGamePlay);
+gameGrid.addEventListener('click', startGame);
 
 
 
 //game defaults to player1 turn to start
 function startGame () {
+
+  var boardValue = event.target.getAttribute('id');
+  if(currentGame === undefined){
+    trackGamePlay(event);
+  } else if(currentGame.playsByPlayer1.includes(boardValue) === false || currentGame.playsByPlayer2.includes(boardValue) === false){
+    console.log(currentGame.playsByPlayer1.includes(boardValue))
+    console.log(currentGame.playsByPlayer2.includes(boardValue))
   trackGamePlay(event);
-  // if(currentGame.gameStart){
-  //   secondPlay()
-  // }
+  }
 }
+
+// function testPlayer1Array(index) {
+//   return currentGame.playsByPlayer1.includes(index);
+// }
+//
+// function testPlayer2Array(index) {
+//   return
+// }
+//
+// function checkForBoxSelectionMatch(array) {
+//   for(var i = 0;i < array.length; i++){
+//     if(array[i].some(testPlayer1Array))
+//     console.log('yes')
+//   }
+// }
 
 function createPlayer1() {
   var player1 = new Player(Date.now(),'star', null)
