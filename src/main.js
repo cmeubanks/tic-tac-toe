@@ -9,7 +9,7 @@ var currentGame
 
 ////////// Event Listeners /////////
 // gameGrid.addEventListener('click', startGame);
-gameGrid.addEventListener('click', addToken);
+gameGrid.addEventListener('click', startGame);
 
 
 //game defaults to player1 turn to start
@@ -34,14 +34,13 @@ function createPlayer2() {
 
 function trackGamePlay(event) {
   var boardValue = event.target.getAttribute('id');
-  var player1
-  var player2
   if(!currentGame){
-    player1 = createPlayer1();
-    player2 = createPlayer2();
+    var player1 = createPlayer1();
+    var player2 = createPlayer2();
     currentGame = new Game(player1, player2);
     player1.selectedBox = boardValue;
     player1.turn = true;
+    addToken(boardValue);
     currentGame.updateGameData();
     console.log("first move", currentGame)
 
@@ -58,7 +57,7 @@ function trackGamePlay(event) {
       currentGame.player2.selectedBox = boardValue;
       currentGame.updateGameData();
       console.log("next move", currentGame)
-    } else {
+      } else {
       currentGame.player1.selectedBox = boardValue;
       currentGame.updateGameData();
       console.log("next move", currentGame)
@@ -67,11 +66,11 @@ function trackGamePlay(event) {
     currentGame.checkForWin();
   }
 
-  function addToken() {
-    var boardValue = event.target.getAttribute('id');
+  function addToken(boardValue) {
+    // var boardValue = event.target.getAttribute('id');
     for(var i = 0; i < box.length; i++){
       if(boardValue === box[i].id){
-      box[i].innerHTML = "❤️"
+      box[i].innerHTML = `<img class="emoji" src="" alt="heart">`
     }
   }
     // document.querySelector(".box").innerHTML = "❤️"

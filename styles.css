@@ -37,7 +37,8 @@ section {
 
 .box {
   border: 5px solid black;
-  background-image: 20px;
+  background-image: 70px;
+  font: 30px;
   height: 80px;
   width: 80px;
 }
