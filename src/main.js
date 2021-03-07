@@ -72,7 +72,6 @@ function trackGamePlay(event) {
     currentGame.playCount++
     if(currentGame.playCount > 1){
       currentGame.switchTurn();
-      //change who's turn it is text
       if(!currentGame.player1.turn){
       currentGame.player2.selectedBox = boardValue;
       currentGame.updateGameData();
@@ -83,5 +82,10 @@ function trackGamePlay(event) {
       console.log("next move", currentGame)
     }
     }
+    currentGame.checkForWin();
   }
+
+  // test(index) {
+  //   return this.playsByPlayer1.includes(index)
+  // }
   //star will later be used in an .innerHTML conditional

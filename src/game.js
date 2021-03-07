@@ -8,14 +8,14 @@ class Game {
   this.playsByPlayer1 = [];
   this.playsByPlayer2 = [];
   this.winningCombos = [
-    [1,2,3],
-    [4,5,6],
-    [7,8,9],
-    [1,4,7],
-    [2,5,8],
-    [3,6,9],
-    [1,5,9],
-    [3,5,7],
+    ["1","2","3"],
+    ["4","5","6"],
+    ["7","8","9"],
+    ["1","4","7"],
+    ["2","5","8"],
+    ["3","6","9"],
+    ["1","5","9"],
+    ["3","5","7"],
   ];
   }
 
@@ -35,16 +35,23 @@ class Game {
     this.player2.turn = true;
     this.player1.turn = false;
     //switch turn text
-  } else {
+    } else {
     // currentGame.playCount++
    this.player2.turn = false;
    this.player1.turn = true;
    //switch turn text
-  }
+    }
   }
 
   checkForWin() {
-    //loops through this.winningCombos and compairs to current player combos
+    for(var i = 0; i < this.winningCombos.length; i++) {
+      if(this.winningCombos[i].every(index => this.playsByPlayer1.includes(index))){
+        this.player1.wins++
+      }
+      if(this.winningCombos[i].every(index => this.playsByPlayer2.includes(index))){
+        this.player2.wins++
+      }
+    }
   }
 
   drawGame() {
