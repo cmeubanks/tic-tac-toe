@@ -1,7 +1,8 @@
 var gameGrid = document.querySelector('#gameGrid');
 var box = document.querySelectorAll('.box');
 var statement = document.querySelector('#statement');
-var currentGame
+var wins = document.querySelectorAll('.wins');
+var currentGame = new Game();
 
 
 
@@ -9,42 +10,29 @@ var currentGame
 
 
 ////////// Event Listeners /////////
-// gameGrid.addEventListener('click', startGame);
 gameGrid.addEventListener('click', startGame);
+window.addEventListener('load', displayWinData);
 
 
 //game defaults to player1 turn to start
 function startGame () {
-  debugger
   var boardValue = event.target.getAttribute('id');
   if(!boardValue){
     return alert("This move has already been made")
   }
   if(!currentGame || currentGame.playCount === 0){
-    trackGamePlay(event);
+    makeFirstMove(event);
   } else if(!currentGame.playsByPlayer1.includes(boardValue) && !currentGame.playsByPlayer2.includes(boardValue) && !preventSameBoxSelection(boardValue)){
-    trackGamePlay(event);
+    makeFirstMove(event);
   } else {
     return
   }
 }
 
-// function createPlayer1() {
-//   var player1 = new Player(Date.now(),'star', null)
-//   return player1
-// }
-//
-// function createPlayer2() {
-//   var player2 = new Player(Date.now()-1,'heart', null)
-//   return player2
-// }
-
-function trackGamePlay(event) {
+function makeFirstMove(event) {
   var boardValue = event.target.getAttribute('id');
   if(!currentGame || currentGame.playCount === 0){
-    // var player1 = createPlayer1();
-    // var player2 = createPlayer2();
-    currentGame = new Game();
+    // currentGame = new Game();
     currentGame.player1.selectedBox = boardValue;
     currentGame.player1.turn = true;
     addToken(boardValue);
@@ -52,14 +40,11 @@ function trackGamePlay(event) {
     console.log("first move", currentGame)
 
     }
-    secondPlay();
+    makeAllOtherMoves();
   }
 
-  function secondPlay() {
+  function makeAllOtherMoves() {
     var boardValue = event.target.getAttribute('id');
-    // if(preventSameBoxSelection(boardValue)){
-    //   return
-    // }
     currentGame.playCount++
     if(currentGame.playCount > 1){
       currentGame.switchTurn();
@@ -77,7 +62,7 @@ function trackGamePlay(event) {
     }
     currentGame.checkForWin();
     currentGame.drawGame();
-    setTimeout(gameReset, 1000 * 3)
+    setTimeout(gameReset, 1000 * 5)
 
   }
 
@@ -104,10 +89,19 @@ function trackGamePlay(event) {
 
   function gameReset() {
     if(statement.innerText === "It's a draw!" || currentGame.gameWin === true){
-      //add to local storage here or in resetGame
+      // displayWinData();
       currentGame.resetGame();
       for(var i = 0; i < box.length; i++){
         box[i].innerHTML = '';
         }
       }
+    }
+
+    function displayWinData() {
+      debugger
+      var p1 = currentGame.player1.retrieveWinsFromStorage();
+      var p2 = currentGame.player2.retrieveWinsFromStorage();
+      wins[0].innerText = p1;
+      wins[1].innerText = p2;
+
     }
