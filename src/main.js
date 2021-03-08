@@ -64,7 +64,7 @@ function makeFirstMove(event) {
     currentGame.checkForWin();
     if(currentGame.gameWin || currentGame.playCount === 9)
     // currentGame.drawGame();
-    setTimeout(gameReset, 1000 * 5)
+    setTimeout(gameReset, 1000 * 2)
 
   }
 
@@ -100,11 +100,12 @@ function makeFirstMove(event) {
     }
 
     function displayWinData() {
-      var storedWins = Object.keys(localStorage)
-      if(storedWins > 0){
-      var p1 = currentGame.player1.retrieveWinsFromStorage();
-      var p2 = currentGame.player2.retrieveWinsFromStorage();
-      wins[0].innerText = p1;
-      wins[1].innerText = p2;
-      }
+      // var storedWins = Object.keys(localStorage)
+      // if(storedWins > 0){
+      debugger
+      currentGame.player1.retrieveWinsFromStorage();
+      currentGame.player2.retrieveWinsFromStorage();
+      wins[0].innerText = `${currentGame.player1.wins}`
+      wins[1].innerText = `${currentGame.player2.wins}`
+      // }
     }
