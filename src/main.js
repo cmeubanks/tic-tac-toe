@@ -1,5 +1,6 @@
 var gameGrid = document.querySelector('#gameGrid');
 var box = document.querySelectorAll('.box');
+var statement = document.querySelector('#statement');
 var currentGame
 
 

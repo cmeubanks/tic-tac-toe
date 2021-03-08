@@ -40,26 +40,33 @@ class Game {
   }
 
   checkForWin() {
+    var gameWin
     for(var i = 0; i < this.winningCombos.length; i++) {
       if(this.winningCombos[i].every(index => this.playsByPlayer1.includes(index))){
         this.player1.wins++
+        gameWin = "yes";
         //add "winning message"
-        //timeou before reset game is run?
-      }
-      if(this.winningCombos[i].every(index => this.playsByPlayer2.includes(index))){
+      } else if (this.winningCombos[i].every(index => this.playsByPlayer2.includes(index))){
         this.player2.wins++
+        gameWin = "yes";
         //add "winning message"
-        //timeout before reset game is run?
+      } else {
+         gameWin = "no";
       }
+    }
+    if(gameWin = "no"){
+      this.drawGame();
     }
   }
 
   drawGame() {
-    //runs through players current plays to see if they equal a certain #
-    // && do not match a winning combo
+    if(this.playCount === 9){
+      statement.innerText = "It's a draw!";
+    }
   }
 
   resetGame() {
     //button to reset game?
+    //timeout within the reset feature
   }
 }
