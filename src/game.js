@@ -76,6 +76,7 @@ class Game {
       this.player2 = player2;
       this.playsByPlayer1 = [];
       this.playsByPlayer2 = [];
+
       statement.innerText = "It's player 1's turn!";
       //saveWinsToStorage
       //setTimeout() may need to be in main JS

@@ -16,10 +16,16 @@ gameGrid.addEventListener('click', startGame);
 //game defaults to player1 turn to start
 function startGame () {
   var boardValue = event.target.getAttribute('id');
+  if(!boardValue){
+    return alert("This move has already been made")
+  }
   if(!currentGame){
     trackGamePlay(event);
-  } else if(!currentGame.playsByPlayer1.includes(boardValue) && !currentGame.playsByPlayer2.includes(boardValue)){
+  } else if(!currentGame.playsByPlayer1.includes(boardValue) && !currentGame.playsByPlayer2.includes(boardValue) && !preventSameBoxSelection(boardValue)){
+    console.log(preventSameBoxSelection(boardValue))
     trackGamePlay(event);
+  } else {
+    return
   }
 }
 
@@ -51,6 +57,9 @@ function trackGamePlay(event) {
 
   function secondPlay() {
     var boardValue = event.target.getAttribute('id');
+    // if(preventSameBoxSelection(boardValue)){
+    //   return
+    // }
     currentGame.playCount++
     if(currentGame.playCount > 1){
       currentGame.switchTurn();
@@ -83,6 +92,15 @@ function trackGamePlay(event) {
         }
       }
     }
+  }
+
+  function preventSameBoxSelection(boardValue){
+    var p1 = currentGame.playsByPlayer1;
+    var p2 = currentGame.playsByPlayer2;
+    var allMovesArray = p1.concat(p2)
+    if(allMovesArray.includes(boardValue)){
+        return true;
+      }
   }
 
   // gameReset() {
