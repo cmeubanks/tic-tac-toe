@@ -91,7 +91,6 @@ function makeFirstMove(event) {
 
   function gameReset() {
     if(statement.innerText === "It's a draw!" || currentGame.gameWin === true){
-      // displayWinData();
       currentGame.resetGame();
       for(var i = 0; i < box.length; i++){
         box[i].innerHTML = '';
@@ -102,7 +101,7 @@ function makeFirstMove(event) {
     function displayWinData() {
       // var storedWins = Object.keys(localStorage)
       // if(storedWins > 0){
-      debugger
+      // debugger
       currentGame.player1.retrieveWinsFromStorage();
       currentGame.player2.retrieveWinsFromStorage();
       wins[0].innerText = `${currentGame.player1.wins}`
