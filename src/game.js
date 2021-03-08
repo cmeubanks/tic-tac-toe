@@ -63,7 +63,11 @@ class Game {
   }
 
   resetGame() {
-    //button to reset game?
-    //timeout within the reset feature
+    //comes after a draw or win a player wins
+
+    //save current player instances to storage
+    //timeout within the reset feature:
+      //reset game board (texts, game instances & player instances to null)
+    //add player wins to page from local storage
   }
 }
