@@ -1,11 +1,9 @@
 class Game {
-  constructor(player1, player2) {
-  // this.gameStart = false;
+  constructor() {
   this.playCount = 0;
   this.gameWin = false;
-  this.player1 = player1;
-  this.player2 = player2;
-  // this.currentPlayer = player1.token;
+  this.player1 = new Player(Date.now(), 'star', null)
+  this.player2 = new Player(Date.now(), 'heart', null)
   this.playsByPlayer1 = [];
   this.playsByPlayer2 = [];
   this.winningCombos = [
@@ -50,7 +48,7 @@ class Game {
         this.player2.wins++
         this.gameWin = true;
         statement.innerText = "Player 2 Wins!"
-      } else {
+      } else if(this.playCount === 9){
          this.gameWin = false;
       }
     }
@@ -63,7 +61,14 @@ class Game {
   }
 
   resetGame() {
-    //button to reset game?
-    //timeout within the reset feature
+    //add player wins to page from local storage
+      this.playCount = 0;
+      this.gameWin = false;
+      this.player1 = new Player(Date.now(), 'heart', null);
+      this.player2 = new Player(Date.now(), 'star', null);
+      this.playsByPlayer1 = [];
+      this.playsByPlayer2 = [];
+      statement.innerText = "It's player 1's turn!";
+      //saveWinsToStorage
+    }
   }
-}
