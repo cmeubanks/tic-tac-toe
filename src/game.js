@@ -1,11 +1,9 @@
 class Game {
-  constructor(player1, player2) {
-  // this.gameStart = false;
+  constructor() {
   this.playCount = 0;
   this.gameWin = false;
-  this.player1 = player1;
-  this.player2 = player2;
-  // this.currentPlayer = player1.token;
+  this.player1 = new Player(Date.now(), 'star', null)
+  this.player2 = new Player(Date.now(), 'heart', null)
   this.playsByPlayer1 = [];
   this.playsByPlayer2 = [];
   this.winningCombos = [
@@ -62,18 +60,17 @@ class Game {
     }
   }
 
-  resetGame(player1, player2) {
+  resetGame() {
     //comes after a draw or win a player wins
 
     //save current player instances to storage
     //timeout within the reset feature:
       //reset game board (texts, game instances & player instances to null)
     //add player wins to page from local storage
-    if(statement.innerText === "It's a draw!" || this.gameWin === true){
       this.playCount = 0;
       this.gameWin = false;
-      this.player1 = player1;
-      this.player2 = player2;
+      this.player1 = new Player(Date.now(), 'heart', null);
+      this.player2 = new Player(Date.now(), 'star', null);
       this.playsByPlayer1 = [];
       this.playsByPlayer2 = [];
 
@@ -82,4 +79,3 @@ class Game {
       //setTimeout() may need to be in main JS
     }
   }
-}

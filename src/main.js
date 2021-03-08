@@ -22,31 +22,30 @@ function startGame () {
   if(!currentGame){
     trackGamePlay(event);
   } else if(!currentGame.playsByPlayer1.includes(boardValue) && !currentGame.playsByPlayer2.includes(boardValue) && !preventSameBoxSelection(boardValue)){
-    console.log(preventSameBoxSelection(boardValue))
     trackGamePlay(event);
   } else {
     return
   }
 }
 
-function createPlayer1() {
-  var player1 = new Player(Date.now(),'star', null)
-  return player1
-}
-
-function createPlayer2() {
-  var player2 = new Player(Date.now()-1,'heart', null)
-  return player2
-}
+// function createPlayer1() {
+//   var player1 = new Player(Date.now(),'star', null)
+//   return player1
+// }
+//
+// function createPlayer2() {
+//   var player2 = new Player(Date.now()-1,'heart', null)
+//   return player2
+// }
 
 function trackGamePlay(event) {
   var boardValue = event.target.getAttribute('id');
   if(!currentGame){
-    var player1 = createPlayer1();
-    var player2 = createPlayer2();
-    currentGame = new Game(player1, player2);
-    player1.selectedBox = boardValue;
-    player1.turn = true;
+    // var player1 = createPlayer1();
+    // var player2 = createPlayer2();
+    currentGame = new Game();
+    currentGame.player1.selectedBox = boardValue;
+    currentGame.player1.turn = true;
     addToken(boardValue);
     currentGame.updateGameData();
     console.log("first move", currentGame)
@@ -77,9 +76,8 @@ function trackGamePlay(event) {
     }
     currentGame.checkForWin();
     currentGame.drawGame();
-    // gameReset();
-    // var resetGame = currentGame.resetGame(currentGame)
-    // window.setTimeout(currentGame.resetGame.bind(this), 2 * 1000);
+    setTimeout(gameReset, 1000 * 2)
+    
   }
 
   function addToken(boardValue) {
@@ -103,9 +101,12 @@ function trackGamePlay(event) {
       }
   }
 
-  // gameReset() {
-  //
-  //
-  //   currentGame.resetGame(null, null);
-  //   for(var i = 0;)
-  // }
+  function gameReset() {
+    debugger
+    if(statement.innerText === "It's a draw!" || currentGame.gameWin === true){
+      currentGame.resetGame();
+      for(var i = 0; i < box.length; i++){
+        box[i].innerHTML = '';
+        }
+      }
+    }
