@@ -2,8 +2,8 @@ class Game {
   constructor() {
   this.playCount = 0;
   this.gameWin = false;
-  this.player1 = new Player(Date.now(), 'star', null)
-  this.player2 = new Player(Date.now(), 'heart', null)
+  this.player1 = new Player(1, 'star', null)
+  this.player2 = new Player(2, 'heart', null)
   this.playsByPlayer1 = [];
   this.playsByPlayer2 = [];
   this.winningCombos = [
@@ -39,18 +39,26 @@ class Game {
   }
 
   checkForWin() {
+    debugger
     for(var i = 0; i < this.winningCombos.length; i++) {
       if(this.winningCombos[i].every(index => this.playsByPlayer1.includes(index))){
         this.player1.wins++
         this.gameWin = true;
-        statement.innerText = "Player 1 Wins!"
+        this.player1.saveWinsToStorage();
+        return statement.innerText = "Player 1 Wins!"
       } else if (this.winningCombos[i].every(index => this.playsByPlayer2.includes(index))){
         this.player2.wins++
         this.gameWin = true;
-        statement.innerText = "Player 2 Wins!"
-      } else if(this.playCount === 9){
-         this.gameWin = false;
+        this.player2.saveWinsToStorage();
+        return statement.innerText = "Player 2 Wins!"
+      // } else if(this.playCount === 9){
+      //    this.gameWin = false;
+      // }
       }
+    }
+    if(this.playCount === 9 && this.gameWin === false){
+      this.gameWin = false;
+      this.drawGame();
     }
   }
 
@@ -62,13 +70,14 @@ class Game {
 
   resetGame() {
     //add player wins to page from local storage
-      this.playCount = 0;
-      this.gameWin = false;
-      this.player1 = new Player(Date.now(), 'heart', null);
-      this.player2 = new Player(Date.now(), 'star', null);
-      this.playsByPlayer1 = [];
-      this.playsByPlayer2 = [];
-      statement.innerText = "It's player 1's turn!";
+      // this.playCount = 0;
+      // this.gameWin = false;
+      // this.player1 = new Player(Date.now(), 'heart', null);
+      // this.player2 = new Player(Date.now()-1, 'star', null);
+      // this.playsByPlayer1 = [];
+      // this.playsByPlayer2 = [];
+      // statement.innerText = "It's player 1's turn!"
+      location.reload();
       //saveWinsToStorage
     }
   }
