@@ -15,11 +15,12 @@ gameGrid.addEventListener('click', startGame);
 
 //game defaults to player1 turn to start
 function startGame () {
+  debugger
   var boardValue = event.target.getAttribute('id');
   if(!boardValue){
     return alert("This move has already been made")
   }
-  if(!currentGame){
+  if(!currentGame || currentGame.playCount === 0){
     trackGamePlay(event);
   } else if(!currentGame.playsByPlayer1.includes(boardValue) && !currentGame.playsByPlayer2.includes(boardValue) && !preventSameBoxSelection(boardValue)){
     trackGamePlay(event);
@@ -40,7 +41,7 @@ function startGame () {
 
 function trackGamePlay(event) {
   var boardValue = event.target.getAttribute('id');
-  if(!currentGame){
+  if(!currentGame || currentGame.playCount === 0){
     // var player1 = createPlayer1();
     // var player2 = createPlayer2();
     currentGame = new Game();
@@ -76,8 +77,8 @@ function trackGamePlay(event) {
     }
     currentGame.checkForWin();
     currentGame.drawGame();
-    setTimeout(gameReset, 1000 * 2)
-    
+    setTimeout(gameReset, 1000 * 3)
+
   }
 
   function addToken(boardValue) {
@@ -102,8 +103,8 @@ function trackGamePlay(event) {
   }
 
   function gameReset() {
-    debugger
     if(statement.innerText === "It's a draw!" || currentGame.gameWin === true){
+      //add to local storage here or in resetGame
       currentGame.resetGame();
       for(var i = 0; i < box.length; i++){
         box[i].innerHTML = '';

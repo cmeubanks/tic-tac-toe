@@ -61,11 +61,6 @@ class Game {
   }
 
   resetGame() {
-    //comes after a draw or win a player wins
-
-    //save current player instances to storage
-    //timeout within the reset feature:
-      //reset game board (texts, game instances & player instances to null)
     //add player wins to page from local storage
       this.playCount = 0;
       this.gameWin = false;
@@ -73,9 +68,7 @@ class Game {
       this.player2 = new Player(Date.now(), 'star', null);
       this.playsByPlayer1 = [];
       this.playsByPlayer2 = [];
-
       statement.innerText = "It's player 1's turn!";
       //saveWinsToStorage
-      //setTimeout() may need to be in main JS
     }
   }
