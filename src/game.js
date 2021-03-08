@@ -2,6 +2,7 @@ class Game {
   constructor(player1, player2) {
   // this.gameStart = false;
   this.playCount = 0;
+  this.gameWin = false;
   this.player1 = player1;
   this.player2 = player2;
   // this.currentPlayer = player1.token;
@@ -43,23 +44,26 @@ class Game {
     for(var i = 0; i < this.winningCombos.length; i++) {
       if(this.winningCombos[i].every(index => this.playsByPlayer1.includes(index))){
         this.player1.wins++
-        //add "winning message"
-        //timeou before reset game is run?
-      }
-      if(this.winningCombos[i].every(index => this.playsByPlayer2.includes(index))){
+        this.gameWin = true;
+        statement.innerText = "Player 1 Wins!"
+      } else if (this.winningCombos[i].every(index => this.playsByPlayer2.includes(index))){
         this.player2.wins++
-        //add "winning message"
-        //timeout before reset game is run?
+        this.gameWin = true;
+        statement.innerText = "Player 2 Wins!"
+      } else {
+         this.gameWin = false;
       }
     }
   }
 
   drawGame() {
-    //runs through players current plays to see if they equal a certain #
-    // && do not match a winning combo
+    if(this.playCount === 9 && this.gameWin === false){
+      statement.innerText = "It's a draw!";
+    }
   }
 
   resetGame() {
     //button to reset game?
+    //timeout within the reset feature
   }
 }

@@ -1,5 +1,6 @@
 var gameGrid = document.querySelector('#gameGrid');
 var box = document.querySelectorAll('.box');
+var statement = document.querySelector('#statement');
 var currentGame
 
 
@@ -66,6 +67,7 @@ function trackGamePlay(event) {
     }
     }
     currentGame.checkForWin();
+    currentGame.drawGame();
   }
 
   function addToken(boardValue) {
