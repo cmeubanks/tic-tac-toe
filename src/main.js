@@ -67,6 +67,7 @@ function trackGamePlay(event) {
     }
     }
     currentGame.checkForWin();
+    currentGame.drawGame();
   }
 
   function addToken(boardValue) {

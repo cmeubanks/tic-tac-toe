@@ -2,6 +2,7 @@ class Game {
   constructor(player1, player2) {
   // this.gameStart = false;
   this.playCount = 0;
+  this.gameWin = false;
   this.player1 = player1;
   this.player2 = player2;
   // this.currentPlayer = player1.token;
@@ -40,27 +41,23 @@ class Game {
   }
 
   checkForWin() {
-    var gameWin
     for(var i = 0; i < this.winningCombos.length; i++) {
       if(this.winningCombos[i].every(index => this.playsByPlayer1.includes(index))){
         this.player1.wins++
-        gameWin = "yes";
-        //add "winning message"
+        this.gameWin = true;
+        statement.innerText = "Player 1 Wins!"
       } else if (this.winningCombos[i].every(index => this.playsByPlayer2.includes(index))){
         this.player2.wins++
-        gameWin = "yes";
-        //add "winning message"
+        this.gameWin = true;
+        statement.innerText = "Player 2 Wins!"
       } else {
-         gameWin = "no";
+         this.gameWin = false;
       }
-    }
-    if(gameWin = "no"){
-      this.drawGame();
     }
   }
 
   drawGame() {
-    if(this.playCount === 9){
+    if(this.playCount === 9 && this.gameWin === false){
       statement.innerText = "It's a draw!";
     }
   }
