@@ -20,7 +20,7 @@ function startGame () {
   if(!boardValue){
     return alert("This move has already been made")
   }
-  if(!currentGame || currentGame.playCount === 0){
+  if(currentGame.playCount === 0){
     makeFirstMove(event);
   } else if(!currentGame.playsByPlayer1.includes(boardValue) && !currentGame.playsByPlayer2.includes(boardValue) && !preventSameBoxSelection(boardValue)){
     makeFirstMove(event);
@@ -31,7 +31,7 @@ function startGame () {
 
 function makeFirstMove(event) {
   var boardValue = event.target.getAttribute('id');
-  if(!currentGame || currentGame.playCount === 0){
+  if(currentGame.playCount === 0){
     // currentGame = new Game();
     currentGame.player1.selectedBox = boardValue;
     currentGame.player1.turn = true;
@@ -44,6 +44,7 @@ function makeFirstMove(event) {
   }
 
   function makeAllOtherMoves() {
+
     var boardValue = event.target.getAttribute('id');
     currentGame.playCount++
     if(currentGame.playCount > 1){
@@ -61,7 +62,8 @@ function makeFirstMove(event) {
     }
     }
     currentGame.checkForWin();
-    currentGame.drawGame();
+    if(currentGame.gameWin || currentGame.playCount === 9)
+    // currentGame.drawGame();
     setTimeout(gameReset, 1000 * 5)
 
   }
@@ -98,10 +100,11 @@ function makeFirstMove(event) {
     }
 
     function displayWinData() {
-      debugger
+      var storedWins = Object.keys(localStorage)
+      if(storedWins > 0){
       var p1 = currentGame.player1.retrieveWinsFromStorage();
       var p2 = currentGame.player2.retrieveWinsFromStorage();
       wins[0].innerText = p1;
       wins[1].innerText = p2;
-
+      }
     }

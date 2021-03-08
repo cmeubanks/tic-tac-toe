@@ -39,21 +39,26 @@ class Game {
   }
 
   checkForWin() {
+    debugger
     for(var i = 0; i < this.winningCombos.length; i++) {
       if(this.winningCombos[i].every(index => this.playsByPlayer1.includes(index))){
         this.player1.wins++
         this.gameWin = true;
         this.player1.saveWinsToStorage();
-        statement.innerText = "Player 1 Wins!"
+        return statement.innerText = "Player 1 Wins!"
       } else if (this.winningCombos[i].every(index => this.playsByPlayer2.includes(index))){
         this.player2.wins++
         this.gameWin = true;
         this.player2.saveWinsToStorage();
-        statement.innerText = "Player 2 Wins!"
+        return statement.innerText = "Player 2 Wins!"
       // } else if(this.playCount === 9){
       //    this.gameWin = false;
       // }
       }
+    }
+    if(this.playCount === 9 && this.gameWin === false){
+      this.gameWin = false;
+      this.drawGame();
     }
   }
 
