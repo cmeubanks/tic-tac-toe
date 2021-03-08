@@ -55,10 +55,12 @@ function trackGamePlay(event) {
       currentGame.switchTurn();
       if(!currentGame.player1.turn){
       currentGame.player2.selectedBox = boardValue;
+      addToken(boardValue);
       currentGame.updateGameData();
       console.log("next move", currentGame)
       } else {
       currentGame.player1.selectedBox = boardValue;
+      addToken(boardValue);
       currentGame.updateGameData();
       console.log("next move", currentGame)
     }
@@ -67,11 +69,13 @@ function trackGamePlay(event) {
   }
 
   function addToken(boardValue) {
-    // var boardValue = event.target.getAttribute('id');
     for(var i = 0; i < box.length; i++){
       if(boardValue === box[i].id){
-      box[i].innerHTML = `<img class="emoji" src="" alt="heart">`
+        if(currentGame.player1.turn){
+          box[i].innerHTML = `<img class="emoji" src="" alt="star">`
+        } else {
+          box[i].innerHTML = `<img class="emoji" src="" alt="heart">`
+        }
+      }
     }
-  }
-    // document.querySelector(".box").innerHTML = "❤️"
   }
