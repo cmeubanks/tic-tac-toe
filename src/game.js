@@ -50,7 +50,7 @@ class Game {
         this.player2.wins++
         this.gameWin = true;
         statement.innerText = "Player 2 Wins!"
-      } else {
+      } else if(this.playCount === 9){
          this.gameWin = false;
       }
     }
@@ -62,12 +62,23 @@ class Game {
     }
   }
 
-  resetGame() {
+  resetGame(player1, player2) {
     //comes after a draw or win a player wins
 
     //save current player instances to storage
     //timeout within the reset feature:
       //reset game board (texts, game instances & player instances to null)
     //add player wins to page from local storage
+    if(statement.innerText === "It's a draw!" || this.gameWin === true){
+      this.playCount = 0;
+      this.gameWin = false;
+      this.player1 = player1;
+      this.player2 = player2;
+      this.playsByPlayer1 = [];
+      this.playsByPlayer2 = [];
+      statement.innerText = "It's player 1's turn!";
+      //saveWinsToStorage
+      //setTimeout() may need to be in main JS
+    }
   }
 }

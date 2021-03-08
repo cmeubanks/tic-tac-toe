@@ -68,6 +68,9 @@ function trackGamePlay(event) {
     }
     currentGame.checkForWin();
     currentGame.drawGame();
+    // gameReset();
+    // var resetGame = currentGame.resetGame(currentGame)
+    // window.setTimeout(currentGame.resetGame.bind(this), 2 * 1000);
   }
 
   function addToken(boardValue) {
@@ -81,3 +84,10 @@ function trackGamePlay(event) {
       }
     }
   }
+
+  // gameReset() {
+  //
+  //
+  //   currentGame.resetGame(null, null);
+  //   for(var i = 0;)
+  // }
