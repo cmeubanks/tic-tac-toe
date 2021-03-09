@@ -1,9 +1,9 @@
 var gameGrid = document.querySelector('#gameGrid');
 var box = document.querySelectorAll('.box');
 var endGameStatement = document.querySelector('#statement');
-var wins = document.querySelectorAll('.wins');
 var statement1 = document.querySelector('#statement1');
 var statement2 = document.querySelector('#statement2');
+var wins = document.querySelectorAll('.wins');
 var currentGame = new Game();
 
 window.addEventListener('load', displayWinData);
@@ -14,17 +14,11 @@ function startGame () {
     return
   }
   var boardValue = event.target.getAttribute('id');
-  if(!boardValue){
+  if(!boardValue || preventSameBoxSelection(boardValue)){
     return alert("This move has already been made")
-  }
-  if(currentGame.playCount === 0){
-    announceTurn();
-    makeFirstMove(event);
-  } else if(!currentGame.playsByPlayer1.includes(boardValue) && !currentGame.playsByPlayer2.includes(boardValue) && !preventSameBoxSelection(boardValue)){
-    announceTurn();
-    makeFirstMove(event);
   } else {
-    return
+    announceTurn();
+    makeFirstMove(event);
   }
 }
 
@@ -98,7 +92,6 @@ function makeFirstMove(event) {
   }
 
   function addToken(boardValue) {
-    debugger
     for(var i = 0; i < box.length; i++){
       if(boardValue === box[i].id){
         if(currentGame.player1.turn){
