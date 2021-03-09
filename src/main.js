@@ -113,13 +113,10 @@ function makeFirstMove(event) {
   }
 
   function gameReset() {
-    if(endGameStatement.innerText === "It's a draw!" || currentGame.gameWin === true){
+    if(currentGame.drawGame() === "It's a draw!" || currentGame.gameWin){
       currentGame.resetGame();
-      for(var i = 0; i < box.length; i++){
-        box[i].innerHTML = '';
-        }
-      }
     }
+  }
 
     function displayWinData() {
       currentGame.player1.retrieveWinsFromStorage();
