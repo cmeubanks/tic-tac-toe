@@ -60,32 +60,50 @@ function makeFirstMove(event) {
       console.log("next move", currentGame)
     }
     }
-    currentGame.checkForWin();
-    if(currentGame.gameWin || currentGame.playCount === 9)
-    // currentGame.drawGame();
-    setTimeout(gameReset, 1000 * 2)
+    endGame();
+    // currentGame.checkForWin();
+    // if(currentGame.gameWin || currentGame.playCount === 9)
+    // setTimeout(gameReset, 1000 * 2)
 
   }
 
+  function endGame() {
+    var winner = currentGame.checkForWin();
+    // console.log(winner);
+    if(winner) {
+      if(winner === "Wanda Wins!"){
+        statement.innerText = winner;
+      } else {
+        statement.innerText = winner;
+      }
+    }  
+    currentGame.drawGame();
+    if(currentGame.gameWin || currentGame.playCount === 9)
+    setTimeout(gameReset, 1000 * 2)
+  }
+
   function announceTurn() {
+    debugger
+    console.log(currentGame.player1.turn)
     if(currentGame.player1.turn){
-      changeStatement('Wanda');
+      changeStatement(currentGame.player1.token);
     } else {
-      changeStatement('Vision');
+      changeStatement(currentGame.player2.token);
     }
   }
 
   function changeStatement(name) {
-    statement.innerText = `It's ${name}'s turn!`
+    return statement.innerText = `It's ${name}'s turn!`;
   }
 
   function addToken(boardValue) {
+    debugger
     for(var i = 0; i < box.length; i++){
       if(boardValue === box[i].id){
         if(currentGame.player1.turn){
-          box[i].innerHTML = `<img class="emoji" src='' alt="Wanda">`
+          box[i].innerHTML = `<img class="emoji" src="./assets/scarletWitch.png" alt=${currentGame.player1.token}>`
         } else {
-          box[i].innerHTML = `<img class="emoji" src='' alt="heart">`
+          box[i].innerHTML = `<img class="emoji" src="./assets/AH.png" alt=${currentGame.player1.token}>`
         }
       }
     }
