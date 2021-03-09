@@ -18,6 +18,10 @@ html {
 main {
   display: flex;
   justify-content: space-around;
+  color: rgba(255, 255, 255, 7);
+  text-shadow: 0 3px 0 rgba(144, 33, 33, 0.8);
+  font: normal small-caps 40px georgia;
+
 }
 
 section {
@@ -34,6 +38,13 @@ section {
   width: 300px;
 }
 
+.statement {
+  font-size: 45px;
+  color: rgba(0, 0, 0, 7);
+  text-shadow: 0 3px 0 rgba(255, 255, 255, 0.8);
+  font-weight: bolder;
+}
+
 .game-sec {
   width: 500px;
   background: rgba(255, 255, 255, 0.3);
@@ -44,7 +55,6 @@ section {
   display: flex;
   justify-content: center;
   border: 5px solid black;
-  /* background-image: 70px; */
   font: 30px;
   height: 92px;
   width: 92px;
@@ -86,14 +96,14 @@ section {
 
 /* Images */
 
-/* .box::before {
- background-image: 😄;
- background-size: 15px;
-
-
-} */
-
 .emoji {
   height: 100px;
   width: 180px;
+}
+
+section > .emoji {
+  border: 10px solid;
+  border-radius: 15px;
+  border-color: rgba(0, 0, 0, 0.5)
+
 }
