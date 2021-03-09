@@ -56,51 +56,53 @@ function makeFirstMove(event) {
 
   function endGame() {
     var winner = currentGame.checkForWin();
-    if(winner) {
-      if(winner === "Wanda Wins!"){
+    if (winner) {
+      if (winner === "Wanda Wins!") {
         announceEndGameStatement(winner);
       } else {
         announceEndGameStatement(winner);
       }
     }
+
     var draw = currentGame.drawGame();
-    if(draw) {
+    if (draw) {
       announceEndGameStatement(draw);
     }
-    if(currentGame.gameWin || currentGame.playCount === 9) {
-    setTimeout(gameReset, 1000 * 2)
-    }
-  }
 
-  function announceEndGameStatement(statement){
+    if (currentGame.gameWin || currentGame.playCount === 9) {
+    setTimeout(gameReset, 1000 * 2);
+    }
+  };
+
+  function announceEndGameStatement(statement) {
     endGameStatement.innerText = statement;
     statement1.classList.add('hidden');
     statement2.classList.add('hidden');
-  }
+  };
 
   function announceTurn() {
-    if(currentGame.player1.turn){
+    if (currentGame.player1.turn) {
       changeStatement(currentGame.player1.token);
     } else {
       changeStatement(currentGame.player2.token);
     }
-  }
+  };
 
   function changeStatement(token) {
     return endGameStatement.innerHTML = `<img class="emoji statement-image"  src="${token}" alt="player-image">`;
-  }
+  };
 
   function addToken(boardValue) {
-    for(var i = 0; i < box.length; i++){
-      if(boardValue === box[i].id){
-        if(currentGame.player1.turn){
-          box[i].innerHTML = `<img class="emoji" src="./assets/scarletWitch.png" alt=${currentGame.player1.token}>`
+    for (var i = 0; i < box.length; i++) {
+      if (boardValue === box[i].id) {
+        if (currentGame.player1.turn) {
+          box[i].innerHTML = `<img class="emoji" src="./assets/scarletWitch.png" alt=${currentGame.player1.token}>`;
         } else {
-          box[i].innerHTML = `<img class="emoji" src="./assets/AH.png" alt=${currentGame.player1.token}>`
+          box[i].innerHTML = `<img class="emoji" src="./assets/AH.png" alt=${currentGame.player1.token}>`;
         }
       }
     }
-  }
+  };
 
   function preventSameBoxSelection(boardValue){
     var p1 = currentGame.playsByPlayer1;
