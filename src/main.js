@@ -1,16 +1,13 @@
 var gameGrid = document.querySelector('#gameGrid');
 var box = document.querySelectorAll('.box');
-var statement = document.querySelector('#statement');
+var endGameStatement = document.querySelector('#statement');
 var wins = document.querySelectorAll('.wins');
 var statement1 = document.querySelector('#statement1');
 var statement2 = document.querySelector('#statement2');
 var currentGame = new Game();
 
-
-gameGrid.addEventListener('click', startGame);
 window.addEventListener('load', displayWinData);
-
-
+gameGrid.addEventListener('click', startGame);
 
 function startGame () {
   if(currentGame.gameWin){
@@ -68,18 +65,18 @@ function makeFirstMove(event) {
     var winner = currentGame.checkForWin();
     if(winner) {
       if(winner === "Wanda Wins!"){
-        statement.innerText = winner;
+        endGameStatement.innerText = winner;
         statement1.classList.add('hidden');
         statement2.classList.add('hidden');
       } else {
-        statement.innerText = winner;
+        endGameStatement.innerText = winner;
         statement1.classList.add('hidden');
         statement2.classList.add('hidden');
       }
     }
     var draw = currentGame.drawGame();
     if(draw) {
-      statement.innerText = draw;
+      endGameStatement.innerText = draw;
       statement1.classList.add('hidden');
       statement2.classList.add('hidden');
     }
@@ -97,7 +94,7 @@ function makeFirstMove(event) {
   }
 
   function changeStatement(token) {
-    return statement.innerHTML = `<img class="emoji statement-image"  src="${token}" alt="player-image">`;
+    return endGameStatement.innerHTML = `<img class="emoji statement-image"  src="${token}" alt="player-image">`;
   }
 
   function addToken(boardValue) {
@@ -123,7 +120,7 @@ function makeFirstMove(event) {
   }
 
   function gameReset() {
-    if(statement.innerText === "It's a draw!" || currentGame.gameWin === true){
+    if(endGameStatement.innerText === "It's a draw!" || currentGame.gameWin === true){
       currentGame.resetGame();
       for(var i = 0; i < box.length; i++){
         box[i].innerHTML = '';
