@@ -25,36 +25,34 @@ function startGame() {
 
 function makeFirstMove(event) {
   var boardValue = event.target.getAttribute('id');
-  if(!currentGame.playCount){
+  if (!currentGame.playCount) {
     currentGame.player1.selectedBox = boardValue;
     currentGame.player1.turn = true;
     addToken(boardValue);
     currentGame.updateGameData();
-    console.log("first move", currentGame)
-
-    }
-    makeAllOtherMoves();
   }
+
+    makeAllOtherMoves();
+  };
 
   function makeAllOtherMoves() {
     var boardValue = event.target.getAttribute('id');
     currentGame.playCount++
-    if(currentGame.playCount > 1){
+    if (currentGame.playCount > 1) {
       currentGame.switchTurn();
-      if(!currentGame.player1.turn){
+      if (!currentGame.player1.turn) {
       currentGame.player2.selectedBox = boardValue;
       addToken(boardValue);
       currentGame.updateGameData();
-      console.log("next move", currentGame)
       } else {
       currentGame.player1.selectedBox = boardValue;
       addToken(boardValue);
       currentGame.updateGameData();
-      console.log("next move", currentGame)
       }
     }
+
     endGame();
-  }
+  };
 
   function endGame() {
     var winner = currentGame.checkForWin();
