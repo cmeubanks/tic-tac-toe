@@ -1,39 +1,30 @@
 var gameGrid = document.querySelector('#gameGrid');
 var box = document.querySelectorAll('.box');
-var statement = document.querySelector('#statement');
-var wins = document.querySelectorAll('.wins');
+var endGameStatement = document.querySelector('#statement');
 var statement1 = document.querySelector('#statement1');
 var statement2 = document.querySelector('#statement2');
+var wins = document.querySelectorAll('.wins');
 var currentGame = new Game();
 
-
-gameGrid.addEventListener('click', startGame);
 window.addEventListener('load', displayWinData);
-
-
+gameGrid.addEventListener('click', startGame);
 
 function startGame () {
   if(currentGame.gameWin){
     return
   }
   var boardValue = event.target.getAttribute('id');
-  if(!boardValue){
+  if(!boardValue || preventSameBoxSelection(boardValue)){
     return alert("This move has already been made")
-  }
-  if(currentGame.playCount === 0){
-    announceTurn();
-    makeFirstMove(event);
-  } else if(!currentGame.playsByPlayer1.includes(boardValue) && !currentGame.playsByPlayer2.includes(boardValue) && !preventSameBoxSelection(boardValue)){
-    announceTurn();
-    makeFirstMove(event);
   } else {
-    return
+    announceTurn();
+    makeFirstMove(event);
   }
 }
 
 function makeFirstMove(event) {
   var boardValue = event.target.getAttribute('id');
-  if(currentGame.playCount === 0){
+  if(!currentGame.playCount){
     currentGame.player1.selectedBox = boardValue;
     currentGame.player1.turn = true;
     addToken(boardValue);
@@ -68,24 +59,24 @@ function makeFirstMove(event) {
     var winner = currentGame.checkForWin();
     if(winner) {
       if(winner === "Wanda Wins!"){
-        statement.innerText = winner;
-        statement1.classList.add('hidden');
-        statement2.classList.add('hidden');
+        announceEndGameStatement(winner);
       } else {
-        statement.innerText = winner;
-        statement1.classList.add('hidden');
-        statement2.classList.add('hidden');
+        announceEndGameStatement(winner);
       }
     }
     var draw = currentGame.drawGame();
     if(draw) {
-      statement.innerText = draw;
-      statement1.classList.add('hidden');
-      statement2.classList.add('hidden');
+      announceEndGameStatement(draw);
     }
     if(currentGame.gameWin || currentGame.playCount === 9) {
     setTimeout(gameReset, 1000 * 2)
     }
+  }
+
+  function announceEndGameStatement(statement){
+    endGameStatement.innerText = statement;
+    statement1.classList.add('hidden');
+    statement2.classList.add('hidden');
   }
 
   function announceTurn() {
@@ -97,11 +88,10 @@ function makeFirstMove(event) {
   }
 
   function changeStatement(token) {
-    return statement.innerHTML = `<img class="emoji statement-image"  src="${token}" alt="player-image">`;
+    return endGameStatement.innerHTML = `<img class="emoji statement-image"  src="${token}" alt="player-image">`;
   }
 
   function addToken(boardValue) {
-    debugger
     for(var i = 0; i < box.length; i++){
       if(boardValue === box[i].id){
         if(currentGame.player1.turn){
@@ -123,13 +113,10 @@ function makeFirstMove(event) {
   }
 
   function gameReset() {
-    if(statement.innerText === "It's a draw!" || currentGame.gameWin === true){
+    if(currentGame.drawGame() === "It's a draw!" || currentGame.gameWin){
       currentGame.resetGame();
-      for(var i = 0; i < box.length; i++){
-        box[i].innerHTML = '';
-        }
-      }
     }
+  }
 
     function displayWinData() {
       currentGame.player1.retrieveWinsFromStorage();

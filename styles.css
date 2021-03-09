@@ -6,9 +6,7 @@ main {
   font-family: arial;
   font-size: 30px;
 }
-/* * {
-  border: 2px solid red;
-} */
+
 html {
   background-image: url(./assets/background.jpeg);
   background-repeat: no-repeat;
@@ -31,6 +29,7 @@ section {
 }
 
 /* Game Play */
+
 .statement-wrapper {
   display: flex;
 }
@@ -94,7 +93,9 @@ section {
 
 
 /* Player Sections */
+
 .wins{
+  font-weight: bolder;
   margin-right: 20px;
 }
 
