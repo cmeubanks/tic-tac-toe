@@ -39,7 +39,6 @@ class Game {
   }
 
   checkForWin() {
-    // debugger
     for(var i = 0; i < this.winningCombos.length; i++) {
       if(this.winningCombos[i].every(index => this.playsByPlayer1.includes(index))){
         this.player1.wins++
@@ -51,15 +50,8 @@ class Game {
         this.gameWin = true;
         this.player2.saveWinsToStorage();
         return "Agatha Wins!"
-      // } else if(this.playCount === 9){
-      //    this.gameWin = false;
-      // }
       }
     }
-    // if(this.playCount === 9 && this.gameWin === false){
-    //   this.gameWin = false;
-    //   this.drawGame();
-    // }
   }
 
   drawGame() {

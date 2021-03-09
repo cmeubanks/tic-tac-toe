@@ -4,12 +4,12 @@ var statement = document.querySelector('#statement');
 var wins = document.querySelectorAll('.wins');
 var currentGame = new Game();
 
-////////// Event Listeners /////////
+
 gameGrid.addEventListener('click', startGame);
 window.addEventListener('load', displayWinData);
 
 
-//game defaults to player1 turn to start
+
 function startGame () {
   if(currentGame.gameWin){
     return
@@ -32,7 +32,6 @@ function startGame () {
 function makeFirstMove(event) {
   var boardValue = event.target.getAttribute('id');
   if(currentGame.playCount === 0){
-    // currentGame = new Game();
     currentGame.player1.selectedBox = boardValue;
     currentGame.player1.turn = true;
     addToken(boardValue);
@@ -58,13 +57,9 @@ function makeFirstMove(event) {
       addToken(boardValue);
       currentGame.updateGameData();
       console.log("next move", currentGame)
-    }
+      }
     }
     endGame();
-    // currentGame.checkForWin();
-    // if(currentGame.gameWin || currentGame.playCount === 9)
-    // setTimeout(gameReset, 1000 * 2)
-
   }
 
   function endGame() {
@@ -86,8 +81,6 @@ function makeFirstMove(event) {
   }
 
   function announceTurn() {
-    debugger
-    console.log(currentGame.player1.turn)
     if(currentGame.player1.turn){
       changeStatement(currentGame.player1.token);
     } else {
@@ -131,12 +124,8 @@ function makeFirstMove(event) {
     }
 
     function displayWinData() {
-      // var storedWins = Object.keys(localStorage)
-      // if(storedWins > 0){
-      // debugger
       currentGame.player1.retrieveWinsFromStorage();
       currentGame.player2.retrieveWinsFromStorage();
       wins[0].innerText = `${currentGame.player1.wins}`
       wins[1].innerText = `${currentGame.player2.wins}`
-      // }
     }
