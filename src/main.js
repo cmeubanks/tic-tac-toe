@@ -19,8 +19,10 @@ function startGame () {
     return alert("This move has already been made")
   }
   if(currentGame.playCount === 0){
+    announceTurn();
     makeFirstMove(event);
   } else if(!currentGame.playsByPlayer1.includes(boardValue) && !currentGame.playsByPlayer2.includes(boardValue) && !preventSameBoxSelection(boardValue)){
+    announceTurn();
     makeFirstMove(event);
   } else {
     return
@@ -33,7 +35,7 @@ function makeFirstMove(event) {
     // currentGame = new Game();
     currentGame.player1.selectedBox = boardValue;
     currentGame.player1.turn = true;
-    addToken(boardValue, currentGame.player1.token, currentGame.player2.token);
+    addToken(boardValue);
     currentGame.updateGameData();
     console.log("first move", currentGame)
 
@@ -42,19 +44,18 @@ function makeFirstMove(event) {
   }
 
   function makeAllOtherMoves() {
-
     var boardValue = event.target.getAttribute('id');
     currentGame.playCount++
     if(currentGame.playCount > 1){
       currentGame.switchTurn();
       if(!currentGame.player1.turn){
       currentGame.player2.selectedBox = boardValue;
-      addToken(boardValue, currentGame.player1.token, currentGame.player2.token);
+      addToken(boardValue);
       currentGame.updateGameData();
       console.log("next move", currentGame)
       } else {
       currentGame.player1.selectedBox = boardValue;
-      addToken(boardValue, currentGame.player1.token, currentGame.player2.token);
+      addToken(boardValue);
       currentGame.updateGameData();
       console.log("next move", currentGame)
     }
@@ -66,17 +67,25 @@ function makeFirstMove(event) {
 
   }
 
+  function announceTurn() {
+    if(currentGame.player1.turn){
+      changeStatement('Wanda');
+    } else {
+      changeStatement('Vision');
+    }
+  }
+
   function changeStatement(name) {
     statement.innerText = `It's ${name}'s turn!`
   }
 
-  function addToken(boardValue, token1, token2) {
+  function addToken(boardValue) {
     for(var i = 0; i < box.length; i++){
       if(boardValue === box[i].id){
         if(currentGame.player1.turn){
-          box[i].innerHTML = `<img class="emoji" src=${token1} alt="Wanda">`
+          box[i].innerHTML = `<img class="emoji" src='' alt="Wanda">`
         } else {
-          box[i].innerHTML = `<img class="emoji" src=${token2} alt="heart">`
+          box[i].innerHTML = `<img class="emoji" src='' alt="heart">`
         }
       }
     }
@@ -92,7 +101,7 @@ function makeFirstMove(event) {
   }
 
   function gameReset() {
-    if(statement.innerText === "It's a draw!" || currentGame.gameWin === true){0000
+    if(statement.innerText === "It's a draw!" || currentGame.gameWin === true){
       currentGame.resetGame();
       for(var i = 0; i < box.length; i++){
         box[i].innerHTML = '';
