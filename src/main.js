@@ -104,24 +104,24 @@ function makeFirstMove(event) {
     }
   };
 
-  function preventSameBoxSelection(boardValue){
+  function preventSameBoxSelection(boardValue) {
     var p1 = currentGame.playsByPlayer1;
     var p2 = currentGame.playsByPlayer2;
     var allMovesArray = p1.concat(p2)
-    if(allMovesArray.includes(boardValue)){
+    if (allMovesArray.includes(boardValue)) {
         return true;
       }
-  }
+  };
 
   function gameReset() {
     if(currentGame.drawGame() === "It's a draw!" || currentGame.gameWin){
       currentGame.resetGame();
     }
-  }
+  };
 
-    function displayWinData() {
-      currentGame.player1.retrieveWinsFromStorage();
-      currentGame.player2.retrieveWinsFromStorage();
-      wins[0].innerText = `${currentGame.player1.wins}`
-      wins[1].innerText = `${currentGame.player2.wins}`
-    }
+  function displayWinData() {
+    currentGame.player1.retrieveWinsFromStorage();
+    currentGame.player2.retrieveWinsFromStorage();
+    wins[0].innerText = `${currentGame.player1.wins}`;
+    wins[1].innerText = `${currentGame.player2.wins}`;
+  };

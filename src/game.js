@@ -16,7 +16,7 @@ class Game {
     ["1","5","9"],
     ["3","5","7"],
   ];
-  }
+}
 
   updateGameData() {
     if (this.player1.turn) {
@@ -57,5 +57,5 @@ class Game {
 
   resetGame() {
       location.reload();
-    }
   }
+};
