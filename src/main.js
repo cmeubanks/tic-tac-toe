@@ -9,18 +9,19 @@ var currentGame = new Game();
 window.addEventListener('load', displayWinData);
 gameGrid.addEventListener('click', startGame);
 
-function startGame () {
-  if(currentGame.gameWin){
+function startGame() {
+  if (currentGame.gameWin) {
     return
   }
+
   var boardValue = event.target.getAttribute('id');
-  if(!boardValue || preventSameBoxSelection(boardValue)){
-    return alert("This move has already been made")
+  if (!boardValue || preventSameBoxSelection(boardValue)) {
+    return alert("This move has already been made");
   } else {
     announceTurn();
     makeFirstMove(event);
   }
-}
+};
 
 function makeFirstMove(event) {
   var boardValue = event.target.getAttribute('id');
