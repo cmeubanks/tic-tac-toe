@@ -59,24 +59,24 @@ function makeFirstMove(event) {
     var winner = currentGame.checkForWin();
     if(winner) {
       if(winner === "Wanda Wins!"){
-        endGameStatement.innerText = winner;
-        statement1.classList.add('hidden');
-        statement2.classList.add('hidden');
+        announceEndGameStatement(winner);
       } else {
-        endGameStatement.innerText = winner;
-        statement1.classList.add('hidden');
-        statement2.classList.add('hidden');
+        announceEndGameStatement(winner);
       }
     }
     var draw = currentGame.drawGame();
     if(draw) {
-      endGameStatement.innerText = draw;
-      statement1.classList.add('hidden');
-      statement2.classList.add('hidden');
+      announceEndGameStatement(draw);
     }
     if(currentGame.gameWin || currentGame.playCount === 9) {
     setTimeout(gameReset, 1000 * 2)
     }
+  }
+
+  function announceEndGameStatement(statement){
+    endGameStatement.innerText = statement;
+    statement1.classList.add('hidden');
+    statement2.classList.add('hidden');
   }
 
   function announceTurn() {
