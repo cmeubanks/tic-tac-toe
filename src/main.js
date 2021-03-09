@@ -69,17 +69,20 @@ function makeFirstMove(event) {
 
   function endGame() {
     var winner = currentGame.checkForWin();
-    // console.log(winner);
     if(winner) {
       if(winner === "Wanda Wins!"){
         statement.innerText = winner;
       } else {
         statement.innerText = winner;
       }
-    }  
-    currentGame.drawGame();
-    if(currentGame.gameWin || currentGame.playCount === 9)
+    }
+    var draw = currentGame.drawGame();
+    if(draw) {
+      statement.innerText = draw;
+    }
+    if(currentGame.gameWin || currentGame.playCount === 9) {
     setTimeout(gameReset, 1000 * 2)
+    }
   }
 
   function announceTurn() {

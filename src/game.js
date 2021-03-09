@@ -64,7 +64,7 @@ class Game {
 
   drawGame() {
     if(this.playCount === 9 && this.gameWin === false){
-      statement.innerText = "It's a draw!";
+      return "It's a draw!";
     }
   }
 
