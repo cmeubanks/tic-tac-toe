@@ -29,13 +29,8 @@ class Game {
   }
 
   switchTurn() {
-    if(this.player1.turn){
-    this.player2.turn = true;
-    this.player1.turn = false;
-    } else {
-   this.player2.turn = false;
-   this.player1.turn = true;
-    }
+   this.player1.turn = !this.player1.turn;
+   this.player2.turn = !this.player2.turn;
   }
 
   checkForWin() {
