@@ -31,14 +31,22 @@ section {
 }
 
 /* Game Play */
+.statement-wrapper {
+  display: flex;
+}
+
 .game-grid {
   display: flex;
   flex-wrap: wrap;
+  margin-top: 20px;
   height: 296px;
   width: 300px;
 }
 
 .statement {
+  margin-top: 60px;
+  margin-right: 5px;
+  margin-left: 5px;
   font-size: 45px;
   color: rgba(0, 0, 0, 7);
   text-shadow: 0 3px 0 rgba(255, 255, 255, 0.8);
@@ -106,4 +114,19 @@ section > .emoji {
   border: 10px solid;
   border-radius: 50px;
   border-color: rgba(0, 0, 0, 0.5);
+}
+
+.statement > img {
+  height: 55px;
+  width: 55px;
+  margin-top: 0px;
+  margin-left: 8px;
+  margin-right: 8px;
+  border: 8px solid;
+  border-radius: 50px;
+  border-color: rgba(0, 0, 0, 0.5);
+}
+
+.hidden {
+  display: none;
 }

@@ -2,8 +2,8 @@ class Game {
   constructor() {
   this.playCount = 0;
   this.gameWin = false;
-  this.player1 = new Player(1, 'Wanda', null)
-  this.player2 = new Player(2, 'Agatha', null)
+  this.player1 = new Player(1, "./assets/scarletWitch.png", null)
+  this.player2 = new Player(2, "./assets/AH.png", null)
   this.playsByPlayer1 = [];
   this.playsByPlayer2 = [];
   this.winningCombos = [
