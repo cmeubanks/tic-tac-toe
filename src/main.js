@@ -88,8 +88,8 @@ function makeFirstMove(event) {
     }
   }
 
-  function changeStatement(name) {
-    return statement.innerText = `It's ${name}'s turn!`;
+  function changeStatement(token) {
+    return statement.innerHTML = `It's <img class="emoji statement-image"  src="${token}" alt="player-image"> Turn!`;
   }
 
   function addToken(boardValue) {
