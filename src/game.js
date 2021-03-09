@@ -2,7 +2,7 @@ class Game {
   constructor() {
   this.playCount = 0;
   this.gameWin = false;
-  this.player1 = new Player(1, 'star', null)
+  this.player1 = new Player(1, './assets/scarletWitch.png', null)
   this.player2 = new Player(2, 'heart', null)
   this.playsByPlayer1 = [];
   this.playsByPlayer2 = [];

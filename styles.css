@@ -9,11 +9,15 @@ main {
 /* * {
   border: 2px solid red;
 } */
+html {
+  background-image: url(./assets/background.jpeg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 
 main {
   display: flex;
   justify-content: space-around;
-  background-color: lime;
 }
 
 section {
@@ -26,24 +30,55 @@ section {
 .game-grid {
   display: flex;
   flex-wrap: wrap;
-  height: 268px;
-  width: 270px;
+  height: 296px;
+  width: 300px;
 }
 
 .game-sec {
   width: 500px;
-  background-color: white;
+  background: rgba(255, 255, 255, 0.3);
+
 }
 
 .box {
+  display: flex;
+  justify-content: center;
   border: 5px solid black;
-  background-image: 70px;
+  /* background-image: 70px; */
   font: 30px;
-  height: 80px;
-  width: 80px;
+  height: 92px;
+  width: 92px;
 }
 
+.box:nth-child(1),
+.box:nth-child(2),
+.box:nth-child(3) {
+  border-top: none;
+}
+
+.box:nth-child(7),
+.box:nth-child(8),
+.box:nth-child(9) {
+  border-bottom: none;
+}
+
+.box:nth-child(1),
+.box:nth-child(4),
+.box:nth-child(7) {
+  border-left: none;
+}
+
+.box:nth-child(3),
+.box:nth-child(6),
+.box:nth-child(9) {
+  border-right: none;
+}
+
+
 /* Player Sections */
+.wins{
+  margin-right: 20px;
+}
 
 .count-styling {
   display: flex;
@@ -58,6 +93,7 @@ section {
 
 } */
 
-.star {
-
+.emoji {
+  height: 100px;
+  width: 180px;
 }

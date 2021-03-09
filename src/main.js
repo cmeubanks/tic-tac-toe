@@ -4,11 +4,6 @@ var statement = document.querySelector('#statement');
 var wins = document.querySelectorAll('.wins');
 var currentGame = new Game();
 
-
-
-
-
-
 ////////// Event Listeners /////////
 gameGrid.addEventListener('click', startGame);
 window.addEventListener('load', displayWinData);
@@ -16,6 +11,9 @@ window.addEventListener('load', displayWinData);
 
 //game defaults to player1 turn to start
 function startGame () {
+  if(currentGame.gameWin){
+    return
+  }
   var boardValue = event.target.getAttribute('id');
   if(!boardValue){
     return alert("This move has already been made")
@@ -35,7 +33,7 @@ function makeFirstMove(event) {
     // currentGame = new Game();
     currentGame.player1.selectedBox = boardValue;
     currentGame.player1.turn = true;
-    addToken(boardValue);
+    addToken(boardValue, currentGame.player1.token, currentGame.player2.token);
     currentGame.updateGameData();
     console.log("first move", currentGame)
 
@@ -51,12 +49,12 @@ function makeFirstMove(event) {
       currentGame.switchTurn();
       if(!currentGame.player1.turn){
       currentGame.player2.selectedBox = boardValue;
-      addToken(boardValue);
+      addToken(boardValue, currentGame.player1.token, currentGame.player2.token);
       currentGame.updateGameData();
       console.log("next move", currentGame)
       } else {
       currentGame.player1.selectedBox = boardValue;
-      addToken(boardValue);
+      addToken(boardValue, currentGame.player1.token, currentGame.player2.token);
       currentGame.updateGameData();
       console.log("next move", currentGame)
     }
@@ -68,13 +66,13 @@ function makeFirstMove(event) {
 
   }
 
-  function addToken(boardValue) {
+  function addToken(boardValue, token1, token2) {
     for(var i = 0; i < box.length; i++){
       if(boardValue === box[i].id){
         if(currentGame.player1.turn){
-          box[i].innerHTML = `<img class="emoji" src="" alt="star">`
+          box[i].innerHTML = `<img class="emoji" src=${token1} alt="Wanda">`
         } else {
-          box[i].innerHTML = `<img class="emoji" src="" alt="heart">`
+          box[i].innerHTML = `<img class="emoji" src=${token2} alt="heart">`
         }
       }
     }
@@ -90,7 +88,7 @@ function makeFirstMove(event) {
   }
 
   function gameReset() {
-    if(statement.innerText === "It's a draw!" || currentGame.gameWin === true){
+    if(statement.innerText === "It's a draw!" || currentGame.gameWin === true){0000
       currentGame.resetGame();
       for(var i = 0; i < box.length; i++){
         box[i].innerHTML = '';
