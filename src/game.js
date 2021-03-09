@@ -20,10 +20,12 @@ class Game {
 
   updateGameData() {
     if(this.player1.turn){
+    statement.innerText = `It's Player 2's Turn!`;
     this.playsByPlayer1.push(this.player1.selectedBox);
     }
 
     if(this.player2.turn){
+    statement.innerText = `It's Player 1's Turn!`;
     this.playsByPlayer2.push(this.player2.selectedBox);
     }
   }
@@ -39,7 +41,7 @@ class Game {
   }
 
   checkForWin() {
-    debugger
+    // debugger
     for(var i = 0; i < this.winningCombos.length; i++) {
       if(this.winningCombos[i].every(index => this.playsByPlayer1.includes(index))){
         this.player1.wins++
