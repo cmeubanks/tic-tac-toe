@@ -66,6 +66,10 @@ function makeFirstMove(event) {
 
   }
 
+  function changeStatement(name) {
+    statement.innerText = `It's ${name}'s turn!`
+  }
+
   function addToken(boardValue, token1, token2) {
     for(var i = 0; i < box.length; i++){
       if(boardValue === box[i].id){
