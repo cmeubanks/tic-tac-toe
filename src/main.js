@@ -15,10 +15,10 @@ function startGame() {
   }
 
   var boardValue = event.target.getAttribute('id');
-  if (!boardValue || preventSameBoxSelection(boardValue)) {
-    return alert("This move has already been made");
+  if ((!boardValue && boardValue !== "gameGrid")|| preventSameBoxSelection(boardValue)) {
+    return 
   } else {
-    announceTurn();
+    announceTurn(boardValue);
     makeFirstMove(event);
   }
 };
@@ -37,17 +37,22 @@ function makeFirstMove(event) {
 
   function makeAllOtherMoves() {
     var boardValue = event.target.getAttribute('id');
-    currentGame.playCount++
+    if (boardValue !== 'gameGrid') {
+      currentGame.playCount++
+    }
+    console.log("play count", currentGame.playCount);
     if (currentGame.playCount > 1) {
       currentGame.switchTurn();
       if (!currentGame.player1.turn) {
       currentGame.player2.selectedBox = boardValue;
       addToken(boardValue);
       currentGame.updateGameData();
+      console.log("wanda turn", currentGame.player1);
       } else {
       currentGame.player1.selectedBox = boardValue;
       addToken(boardValue);
       currentGame.updateGameData();
+      console.log("wanda turn", currentGame.player2);
       }
     }
 
@@ -80,10 +85,10 @@ function makeFirstMove(event) {
     statement2.classList.add('hidden');
   };
 
-  function announceTurn() {
-    if (currentGame.player1.turn) {
+  function announceTurn(boardValue) {
+    if (currentGame.player1.turn && boardValue !== 'gameGrid') {
       changeStatement(currentGame.player1.token);
-    } else {
+    } else if(boardValue !== 'gameGrid'){
       changeStatement(currentGame.player2.token);
     }
   };
@@ -94,7 +99,7 @@ function makeFirstMove(event) {
 
   function addToken(boardValue) {
     for (var i = 0; i < box.length; i++) {
-      if (boardValue === box[i].id) {
+      if (boardValue === box[i].id && boardValue !== 'gameGrid') {
         if (currentGame.player1.turn) {
           box[i].innerHTML = `<img class="emoji" src="./assets/scarletWitch.png" alt=${currentGame.player1.token}>`;
         } else {
