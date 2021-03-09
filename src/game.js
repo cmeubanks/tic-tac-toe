@@ -50,7 +50,7 @@ class Game {
   }
 
   drawGame() {
-    if(this.playCount === 9 && this.gameWin === false){
+    if(this.playCount === 9 && !this.gameWin){
       return "It's a draw!";
     }
   }

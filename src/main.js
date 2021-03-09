@@ -24,7 +24,7 @@ function startGame () {
 
 function makeFirstMove(event) {
   var boardValue = event.target.getAttribute('id');
-  if(currentGame.playCount === 0){
+  if(!currentGame.playCount){
     currentGame.player1.selectedBox = boardValue;
     currentGame.player1.turn = true;
     addToken(boardValue);
