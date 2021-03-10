@@ -15,7 +15,11 @@ function startGame() {
   }
 
   var boardValue = event.target.getAttribute('id');
-  if ((!boardValue && boardValue !== "gameGrid")|| preventSameBoxSelection(boardValue)) {
+  if (boardValue === "gameGrid"){
+    return
+  }
+
+  if (!boardValue || preventSameBoxSelection(boardValue)) {
     return
   } else {
     announceTurn(boardValue);
@@ -37,10 +41,7 @@ function makeFirstMove(event) {
 
   function makeAllOtherMoves() {
     var boardValue = event.target.getAttribute('id');
-    if (boardValue !== 'gameGrid') {
-      currentGame.playCount++
-    }
-    console.log("play count", currentGame.playCount);
+    currentGame.playCount++
     if (currentGame.playCount > 1) {
       currentGame.switchTurn();
       if (!currentGame.player1.turn) {
@@ -86,9 +87,9 @@ function makeFirstMove(event) {
   };
 
   function announceTurn(boardValue) {
-    if (currentGame.player1.turn && boardValue !== 'gameGrid') {
+    if (currentGame.player1.turn) {
       changeStatement(currentGame.player1.token);
-    } else if(boardValue !== 'gameGrid'){
+    } else {
         changeStatement(currentGame.player2.token);
     }
   };
@@ -99,7 +100,7 @@ function makeFirstMove(event) {
 
   function addToken(boardValue) {
     for (var i = 0; i < box.length; i++) {
-      if (boardValue === box[i].id && boardValue !== 'gameGrid') {
+      if (boardValue === box[i].id) {
         if (currentGame.player1.turn) {
           box[i].innerHTML = `<img class="emoji" src="./assets/scarletWitch.png" alt=${currentGame.player1.token}>`;
         } else {
