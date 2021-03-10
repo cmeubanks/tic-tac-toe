@@ -48,12 +48,10 @@ function makeFirstMove(event) {
         currentGame.player2.selectedBox = boardValue;
         addToken(boardValue);
         currentGame.updateGameData();
-      console.log("wanda turn", currentGame.player1);
       } else {
           currentGame.player1.selectedBox = boardValue;
           addToken(boardValue);
           currentGame.updateGameData();
-      console.log("wanda turn", currentGame.player2);
       }
     }
 
