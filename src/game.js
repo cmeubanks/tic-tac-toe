@@ -19,12 +19,12 @@ class Game {
 }
 
   updateGameData() {
-    if (this.player1.turn) {
-    this.playsByPlayer1.push(this.player1.selectedBox);
+    if (this.player1.turn && this.player1.selectedBox !== "gameGrid") {
+      this.playsByPlayer1.push(this.player1.selectedBox);
     }
 
-    if (this.player2.turn) {
-    this.playsByPlayer2.push(this.player2.selectedBox);
+    if (this.player2.turn && this.player2.selectedBox !== "gameGrid") {
+      this.playsByPlayer2.push(this.player2.selectedBox);
     }
   }
 
@@ -41,10 +41,10 @@ class Game {
         this.player1.saveWinsToStorage();
         return "Wanda Wins!";
       } else if (this.winningCombos[i].every(index => this.playsByPlayer2.includes(index))){
-        this.player2.wins++;
-        this.gameWin = true;
-        this.player2.saveWinsToStorage();
-        return "Agatha Wins!";
+          this.player2.wins++;
+          this.gameWin = true;
+          this.player2.saveWinsToStorage();
+          return "Agatha Wins!";
       }
     }
   }

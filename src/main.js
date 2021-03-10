@@ -16,7 +16,7 @@ function startGame() {
 
   var boardValue = event.target.getAttribute('id');
   if ((!boardValue && boardValue !== "gameGrid")|| preventSameBoxSelection(boardValue)) {
-    return 
+    return
   } else {
     announceTurn(boardValue);
     makeFirstMove(event);
@@ -44,14 +44,14 @@ function makeFirstMove(event) {
     if (currentGame.playCount > 1) {
       currentGame.switchTurn();
       if (!currentGame.player1.turn) {
-      currentGame.player2.selectedBox = boardValue;
-      addToken(boardValue);
-      currentGame.updateGameData();
+        currentGame.player2.selectedBox = boardValue;
+        addToken(boardValue);
+        currentGame.updateGameData();
       console.log("wanda turn", currentGame.player1);
       } else {
-      currentGame.player1.selectedBox = boardValue;
-      addToken(boardValue);
-      currentGame.updateGameData();
+          currentGame.player1.selectedBox = boardValue;
+          addToken(boardValue);
+          currentGame.updateGameData();
       console.log("wanda turn", currentGame.player2);
       }
     }
@@ -65,7 +65,7 @@ function makeFirstMove(event) {
       if (winner === "Wanda Wins!") {
         announceEndGameStatement(winner);
       } else {
-        announceEndGameStatement(winner);
+          announceEndGameStatement(winner);
       }
     }
 
@@ -75,7 +75,7 @@ function makeFirstMove(event) {
     }
 
     if (currentGame.gameWin || currentGame.playCount === 9) {
-    setTimeout(gameReset, 1000 * 2);
+      setTimeout(gameReset, 1000 * 2);
     }
   };
 
@@ -89,7 +89,7 @@ function makeFirstMove(event) {
     if (currentGame.player1.turn && boardValue !== 'gameGrid') {
       changeStatement(currentGame.player1.token);
     } else if(boardValue !== 'gameGrid'){
-      changeStatement(currentGame.player2.token);
+        changeStatement(currentGame.player2.token);
     }
   };
 
@@ -103,7 +103,7 @@ function makeFirstMove(event) {
         if (currentGame.player1.turn) {
           box[i].innerHTML = `<img class="emoji" src="./assets/scarletWitch.png" alt=${currentGame.player1.token}>`;
         } else {
-          box[i].innerHTML = `<img class="emoji" src="./assets/AH.png" alt=${currentGame.player1.token}>`;
+            box[i].innerHTML = `<img class="emoji" src="./assets/AH.png" alt=${currentGame.player1.token}>`;
         }
       }
     }
