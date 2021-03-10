@@ -19,11 +19,11 @@ class Game {
 }
 
   updateGameData() {
-    if (this.player1.turn && this.player1.selectedBox !== "gameGrid") {
+    if (this.player1.turn) {
       this.playsByPlayer1.push(this.player1.selectedBox);
     }
 
-    if (this.player2.turn && this.player2.selectedBox !== "gameGrid") {
+    if (this.player2.turn) {
       this.playsByPlayer2.push(this.player2.selectedBox);
     }
   }
