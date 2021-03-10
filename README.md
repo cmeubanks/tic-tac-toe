@@ -27,7 +27,7 @@ Who will win the battle for the Scarlet Witch's power?! Choose your player and b
 - Caroline Eubanks
 
 ### Game Play:
-![]()
+![](https://media.giphy.com/media/zXADYUICul4CvP0g3U/giphy.gif)
 
 ### Local Storage:
-![]()
+![](https://media.giphy.com/media/nfU1EgKZ5UPdhAebBx/giphy.gif)
