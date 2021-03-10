@@ -9,118 +9,124 @@ var currentGame = new Game();
 window.addEventListener('load', displayWinData);
 gameGrid.addEventListener('click', startGame);
 
-function startGame () {
-  if(currentGame.gameWin){
+function startGame() {
+  if (currentGame.gameWin) {
     return
   }
+
   var boardValue = event.target.getAttribute('id');
-  if(!boardValue || preventSameBoxSelection(boardValue)){
-    return alert("This move has already been made")
+  if ((!boardValue && boardValue !== "gameGrid")|| preventSameBoxSelection(boardValue)) {
+    return 
   } else {
-    announceTurn();
+    announceTurn(boardValue);
     makeFirstMove(event);
   }
-}
+};
 
 function makeFirstMove(event) {
   var boardValue = event.target.getAttribute('id');
-  if(!currentGame.playCount){
+  if (!currentGame.playCount) {
     currentGame.player1.selectedBox = boardValue;
     currentGame.player1.turn = true;
     addToken(boardValue);
     currentGame.updateGameData();
-    console.log("first move", currentGame)
-
-    }
-    makeAllOtherMoves();
   }
+
+    makeAllOtherMoves();
+  };
 
   function makeAllOtherMoves() {
     var boardValue = event.target.getAttribute('id');
-    currentGame.playCount++
-    if(currentGame.playCount > 1){
+    if (boardValue !== 'gameGrid') {
+      currentGame.playCount++
+    }
+    console.log("play count", currentGame.playCount);
+    if (currentGame.playCount > 1) {
       currentGame.switchTurn();
-      if(!currentGame.player1.turn){
+      if (!currentGame.player1.turn) {
       currentGame.player2.selectedBox = boardValue;
       addToken(boardValue);
       currentGame.updateGameData();
-      console.log("next move", currentGame)
+      console.log("wanda turn", currentGame.player1);
       } else {
       currentGame.player1.selectedBox = boardValue;
       addToken(boardValue);
       currentGame.updateGameData();
-      console.log("next move", currentGame)
+      console.log("wanda turn", currentGame.player2);
       }
     }
+
     endGame();
-  }
+  };
 
   function endGame() {
     var winner = currentGame.checkForWin();
-    if(winner) {
-      if(winner === "Wanda Wins!"){
+    if (winner) {
+      if (winner === "Wanda Wins!") {
         announceEndGameStatement(winner);
       } else {
         announceEndGameStatement(winner);
       }
     }
+
     var draw = currentGame.drawGame();
-    if(draw) {
+    if (draw) {
       announceEndGameStatement(draw);
     }
-    if(currentGame.gameWin || currentGame.playCount === 9) {
-    setTimeout(gameReset, 1000 * 2)
-    }
-  }
 
-  function announceEndGameStatement(statement){
+    if (currentGame.gameWin || currentGame.playCount === 9) {
+    setTimeout(gameReset, 1000 * 2);
+    }
+  };
+
+  function announceEndGameStatement(statement) {
     endGameStatement.innerText = statement;
     statement1.classList.add('hidden');
     statement2.classList.add('hidden');
-  }
+  };
 
-  function announceTurn() {
-    if(currentGame.player1.turn){
+  function announceTurn(boardValue) {
+    if (currentGame.player1.turn && boardValue !== 'gameGrid') {
       changeStatement(currentGame.player1.token);
-    } else {
+    } else if(boardValue !== 'gameGrid'){
       changeStatement(currentGame.player2.token);
     }
-  }
+  };
 
   function changeStatement(token) {
     return endGameStatement.innerHTML = `<img class="emoji statement-image"  src="${token}" alt="player-image">`;
-  }
+  };
 
   function addToken(boardValue) {
-    for(var i = 0; i < box.length; i++){
-      if(boardValue === box[i].id){
-        if(currentGame.player1.turn){
-          box[i].innerHTML = `<img class="emoji" src="./assets/scarletWitch.png" alt=${currentGame.player1.token}>`
+    for (var i = 0; i < box.length; i++) {
+      if (boardValue === box[i].id && boardValue !== 'gameGrid') {
+        if (currentGame.player1.turn) {
+          box[i].innerHTML = `<img class="emoji" src="./assets/scarletWitch.png" alt=${currentGame.player1.token}>`;
         } else {
-          box[i].innerHTML = `<img class="emoji" src="./assets/AH.png" alt=${currentGame.player1.token}>`
+          box[i].innerHTML = `<img class="emoji" src="./assets/AH.png" alt=${currentGame.player1.token}>`;
         }
       }
     }
-  }
+  };
 
-  function preventSameBoxSelection(boardValue){
+  function preventSameBoxSelection(boardValue) {
     var p1 = currentGame.playsByPlayer1;
     var p2 = currentGame.playsByPlayer2;
     var allMovesArray = p1.concat(p2)
-    if(allMovesArray.includes(boardValue)){
+    if (allMovesArray.includes(boardValue)) {
         return true;
       }
-  }
+  };
 
   function gameReset() {
     if(currentGame.drawGame() === "It's a draw!" || currentGame.gameWin){
       currentGame.resetGame();
     }
-  }
+  };
 
-    function displayWinData() {
-      currentGame.player1.retrieveWinsFromStorage();
-      currentGame.player2.retrieveWinsFromStorage();
-      wins[0].innerText = `${currentGame.player1.wins}`
-      wins[1].innerText = `${currentGame.player2.wins}`
-    }
+  function displayWinData() {
+    currentGame.player1.retrieveWinsFromStorage();
+    currentGame.player2.retrieveWinsFromStorage();
+    wins[0].innerText = `${currentGame.player1.wins}`;
+    wins[1].innerText = `${currentGame.player2.wins}`;
+  };
